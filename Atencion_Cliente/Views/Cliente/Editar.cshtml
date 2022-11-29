@@ -1,0 +1,73 @@
+﻿@model ClienteModel
+@{
+    ViewData["Title"] = "Editar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="card">
+    <div class="card-header">
+        Editar Atención de Cliente
+    </div>
+    <div class="card-body">
+
+        <form asp-action="Editar" asp-controller="Cliente" method="post">
+            <input asp-for="idAtencionCliente" type="hidden" class="form-control">
+            <div class="mb-3 row">
+                <label class="col-sm-2 col-form-label">Nombres</label>
+                <div class="col-sm-3">
+                    <input asp-for="nombres" type="text" class="form-control">
+                    <span asp-validation-for="nombres" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label class="col-sm-2 form-label">Apellidos</label>
+                <div class="col-sm-3">
+                    <input asp-for="apellidos" type="text" class="form-control">
+                    <span asp-validation-for="apellidos" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label class="col-sm-2 form-label">Celular</label>
+                <div class="col-sm-3">
+                    <input asp-for="celular" type="text" class="form-control">
+                    <span asp-validation-for="celular" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label class="col-sm-2 form-label">Email</label>
+                <div class="col-sm-3">
+                    <input asp-for="email" type="text" class="form-control">
+                    <span asp-validation-for="email" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label class="col-sm-2 form-label">Sexo</label>
+                <div class="col-sm-3">
+                    <input asp-for="sexo" type="radio" value="1" />Hombre
+                    <input asp-for="sexo" type="radio" value="2" />Mujer
+                    <span asp-validation-for="sexo" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label class="col-sm-2 form-label">Motivo</label>
+                <div class="col-sm-3">
+                    <select class="form-control" asp-for="idMotivo" asp-items="@(new SelectList(Model.MotivoList, nameof(MotivoModel.idMotivo), nameof(MotivoModel.descMotivo)))">
+                        <option>-- SELECCIONAR --</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="mb-3 row">
+                <div class="col-sm-2"></div>
+                <div class="col-sm-3">
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                    <a asp-action="Listar" asp-controller="Cliente" class="btn btn-warning">Volver a la lista</a>
+                </div>
+            </div>
+
+           
+        </form>
+
+    </div>
+</div>
+

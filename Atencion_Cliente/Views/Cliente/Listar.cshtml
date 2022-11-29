@@ -1,0 +1,59 @@
+﻿@model Atencion_Cliente.ViewModels.ClienteView
+@{
+    ViewData["Title"] = "Listar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="card">
+    <div class="card-header">
+        Lista de Atención de Cliente
+    </div>
+    <div class="card-body">
+        <form asp-action="Listar" asp-controller="Cliente" method="post">
+            <div class="mb-3 row">
+                <div class="col-sm-3">
+                    <a asp-action="Nuevo" asp-controller="Cliente" class="btn btn-success">Crear nuevo</a>
+                </div>
+                <div class="col-sm-9 d-flex justify-content-end">
+                    <label class="col-sm-4 form-label">Seleccionar rango de fecha</label>
+                    <input asp-for="fecha" type="date" class="col-sm-3 form-control">
+                    <button type="submit" class="btn btn-primary btn-sm">Buscar</button>
+                </div>
+            </div>
+        </form>
+        <hr />
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Celular</th>
+                    <th>Email</th>
+                    <th>Sexo</th>
+                    <th>Motivo</th>
+                    <th>Fecha</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.ClienteList)
+                {
+                    <tr>
+                        <td>@item.nombres</td>
+                        <td>@item.apellidos</td>
+                        <td>@item.celular</td>
+                        <td>@item.email</td>
+                        <td>@item.descSexo</td>
+                        <td>@item.descMotivo</td>
+                        <td>@item.fecha</td>
+                        <td>
+                            <a asp-action="Editar" asp-controller="Cliente" class="btn btn-primary btn-sm" asp-route-idCliente="@item.idAtencionCliente">Editar</a>
+                            <a asp-action="Eliminar" asp-controller="Cliente" class="btn btn-danger btn-sm" asp-route-idCliente="@item.idAtencionCliente">Eliminar</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    </div>
+</div>

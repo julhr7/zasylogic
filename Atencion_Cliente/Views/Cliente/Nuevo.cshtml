@@ -1,0 +1,95 @@
+﻿@model ClienteModel
+
+@{
+    ViewData["Title"] = "Guardar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="card">
+    <div class="card-header">
+        Crear Atención de Cliente
+    </div>
+    <div class="card-body">
+
+        <form asp-action="Guardar" asp-controller="Cliente" method="post">
+            <div class="mb-3 row">
+                <label class="col-sm-2 col-form-label">Nombres</label>
+                <div class="col-sm-3">
+                    <input asp-for="nombres" type="text" class="form-control">
+                    <span asp-validation-for="nombres" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label class="col-sm-2 form-label">Apellidos</label>
+                <div class="col-sm-3">
+                    <input asp-for="apellidos" type="text" class="form-control">
+                    <span asp-validation-for="apellidos" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label class="col-sm-2 form-label">Celular</label>
+                <div class="col-sm-3">
+                    <input asp-for="celular" type="text" class="form-control">
+                    <span asp-validation-for="celular" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label class="col-sm-2 form-label">Email</label>
+                <div class="col-sm-3">
+                    <input asp-for="email" type="text" class="form-control">
+                    <span asp-validation-for="email" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label class="col-sm-2 form-label">Sexo</label>
+                <div class="col-sm-3">
+                    <input asp-for="sexo" type="radio" value="1" />Hombre
+                    <input asp-for="sexo" type="radio" value="2" />Mujer
+                    <span asp-validation-for="sexo" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label class="col-sm-2 form-label">Motivo</label>
+                <div class="col-sm-3">
+                    <select class="form-control" asp-for="idMotivo" asp-items="@(new SelectList(Model.MotivoList, nameof(MotivoModel.idMotivo), nameof(MotivoModel.descMotivo)))">
+                        <option>-- SELECCIONAR --</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="mb-3 row">
+                <div class="col-sm-2"></div>
+                <div class="col-sm-3">
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                    <a asp-action="Listar" asp-controller="Cliente" class="btn btn-warning">Volver a la lista</a>
+                </div>
+            </div>
+        </form>
+
+    </div>
+</div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Atención Cliente</h5>
+            </div>
+            <div class="modal-body">
+                Ya exite un registro con los datos inregsados
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    function modal() {
+        //$('#myModal').on('shown.bs.modal', function () {
+        //    $('#myInput').trigger('focus')
+        //})
+        $('#myModal').modal('show');
+    }
+</script>
